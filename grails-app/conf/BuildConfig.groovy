@@ -32,7 +32,8 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
     dependencies {
-		runtime 'net.sourceforge.nekohtml:nekohtml:1.9.17'
+//		runtime 'net.sourceforge.nekohtml:nekohtml:1.9.17'
+		runtime 'org.ccil.cowan.tagsoup:tagsoup:1.2'
     }
 
     plugins {

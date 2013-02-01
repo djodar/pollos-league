@@ -6,10 +6,10 @@ class Gameweek {
     }
 	
 	int gameweek
+	int code
 	
 	/** List of JSONObject */
 	def players = []
-
 	@Override
 	public String toString() {
 		return "Gameweek [gameweek=" + gameweek + ", players=" + players + "]";
