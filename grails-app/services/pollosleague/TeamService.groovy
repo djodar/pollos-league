@@ -1,8 +1,8 @@
 package pollosleague
 
-import grails.converters.*
+import org.codehaus.groovy.grails.web.json.JSONObject;
 
-import org.codehaus.groovy.grails.web.json.JSONObject
+import grails.converters.*
 
 class TeamService {
 
@@ -16,15 +16,16 @@ class TeamService {
 			
 			def code = it.code	
 			def players = []
+			def newGameweek = new Gameweek(gameweek: gameweek, code: code, players: players)
 			
 			getTeamIds(gameweek, code).each {
 				JSONObject player = getPlayer(it)
 				log.info(player)
-				players.add(player)
+				newGameweek.players.add(player.toString())
 				
 			}		
 			
-			def newGameweek = new Gameweek(gameweek: gameweek, code: code, players: players).save()
+			newGameweek.save(failOnError: true, flush: true)
 			it.gameweeks.add(newGameweek)
 		}
 	}
@@ -49,8 +50,8 @@ class TeamService {
 	}
 	
 	JSONObject getPlayer(String id) {
-		log.info("Querying API for element " + id)
 		def url = new URL(API_URL + id)
+		log.info("Querying API for element ${id}: ${url}")
 		return JSON.parse(url.newReader())
 	}
 }

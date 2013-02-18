@@ -90,3 +90,6 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// javadoc
+grails.doc.api.org.springframework = "http://static.springsource.org/spring/docs/3.1.x/javadoc-api/"

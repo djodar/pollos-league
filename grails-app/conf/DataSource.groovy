@@ -1,8 +1,7 @@
 dataSource {
     pooled = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "com.mysql.jdbc.Driver"
+    dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -13,20 +12,22 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            dbCreate = "create" // one of 'create', 'create-drop', 'update', 'validate', ''
+			url = "jdbc:mysql://localhost/pollosleague?useUnicode=yes&characterEncoding=UTF-8"
+			username = "dev"
+			password = "dev"
         }
     }
     test {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            dbCreate = "create-drop"
+            url = "jdbc:mysql://localhost/testpollosleague?useUnicode=yes&characterEncoding=UTF-8"
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:mysql://localhost/prodpollosleague?useUnicode=yes&characterEncoding=UTF-8"
             pooled = true
             properties {
                maxActive = -1
